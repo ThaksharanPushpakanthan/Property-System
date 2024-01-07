@@ -9,8 +9,11 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log('Fetching data...');
         const response = await fetch('/properties.json');
+        console.log('Data fetched:', response);
         const data = await response.json();
+        console.log('Data parsed:', data);
         setPropertiesData(data.properties);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -21,25 +24,36 @@ const App = () => {
   }, []);
 
   const handleSearch = (criteria) => {
-    // Check if propertiesData is available
+    console.log('Handling search with criteria:', criteria);
+
     if (!propertiesData || propertiesData.length === 0) {
       console.error('Properties data not available');
       return;
     }
-  
+
     const results = propertiesData.filter(property => {
       if (criteria.type === 'any' || property.type === criteria.type) {
         return true;
       }
       return false;
     });
-  
+
     setSearchResults(results);
   };
-  
+
   return (
     <div>
       <h1>Property Search</h1>
+      {/* Add a section to display all properties */}
+      <div>
+        <h2>All Properties</h2>
+        {propertiesData.map(property => (
+          <div key={property.id}>
+            {/* Render property details here */}
+          </div>
+        ))}
+      </div>
+
       <SearchForm onSearch={handleSearch} />
 
       <div>
