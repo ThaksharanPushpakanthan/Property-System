@@ -8,7 +8,7 @@ const App = () => {
 
   const handleSearch = (criteria) => {
     const results = propertiesData.properties.filter(property => {
-      if (criteria.type === 'House' || property.type === criteria.type) {
+      if (criteria.type === 'any' || property.type === criteria.type) {
         return true; // Include the property if the type matches or 'any' is selected
       }
       return false; // Exclude the property if the type doesn't match
