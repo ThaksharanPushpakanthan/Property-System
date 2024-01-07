@@ -21,16 +21,22 @@ const App = () => {
   }, []);
 
   const handleSearch = (criteria) => {
+    // Check if propertiesData is available
+    if (!propertiesData || propertiesData.length === 0) {
+      console.error('Properties data not available');
+      return;
+    }
+  
     const results = propertiesData.filter(property => {
       if (criteria.type === 'any' || property.type === criteria.type) {
         return true;
       }
       return false;
     });
-
+  
     setSearchResults(results);
   };
-
+  
   return (
     <div>
       <h1>Property Search</h1>
