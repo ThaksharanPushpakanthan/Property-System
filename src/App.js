@@ -9,11 +9,9 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('Fetching data...');
         const response = await fetch('/properties.json');
-        console.log('Data fetched:', response);
         const data = await response.json();
-        console.log('Data parsed:', data);
+        console.log('Fetched data:', data); // Log fetched data
         setPropertiesData(data.properties);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -38,22 +36,13 @@ const App = () => {
       return false;
     });
 
+    console.log('Search results:', results); // Log search results
     setSearchResults(results);
   };
 
   return (
     <div>
       <h1>Property Search</h1>
-      {/* Add a section to display all properties */}
-      <div>
-        <h2>All Properties</h2>
-        {propertiesData.map(property => (
-          <div key={property.id}>
-            {/* Render property details here */}
-          </div>
-        ))}
-      </div>
-
       <SearchForm onSearch={handleSearch} />
 
       <div>
