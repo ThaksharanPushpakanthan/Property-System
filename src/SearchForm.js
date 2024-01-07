@@ -2,20 +2,27 @@
 import React, { useState } from 'react';
 
 const SearchForm = ({ onSearch }) => {
-  const [searchCriteria, setSearchCriteria] = useState({ type: 'any' });
+  const [searchCriteria, setSearchCriteria] = useState({
+    type: 'any',
+    minPrice: '',
+    maxPrice: '',
+    minBedrooms: '',
+    maxBedrooms: '',
+    startDate: '',
+    endDate: '',
+    postcodeArea: '',
+  });
 
   const handleChange = (e) => {
-    setSearchCriteria((prevCriteria) => ({
-      ...prevCriteria,
-      type: e.target.value,
-    }));
-    console.log('Search criteria updated:', searchCriteria);
+    setSearchCriteria({
+      ...searchCriteria,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(searchCriteria);
-    console.log('Search submitted with criteria:', searchCriteria);
   };
 
   return (
@@ -28,6 +35,9 @@ const SearchForm = ({ onSearch }) => {
           <option value="flat">Flat</option>
         </select>
       </label>
+
+      {/* Add other input fields for price, bedrooms, date, postcode, etc. */}
+
       <button type="submit">Search</button>
     </form>
   );
