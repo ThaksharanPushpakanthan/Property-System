@@ -5,16 +5,17 @@ const SearchForm = ({ onSearch }) => {
   const [searchCriteria, setSearchCriteria] = useState({ type: 'any' });
 
   const handleChange = (e) => {
-    setSearchCriteria(prevState => ({
-      ...prevState,
+    setSearchCriteria((prevCriteria) => ({
+      ...prevCriteria,
       type: e.target.value,
     }));
+    console.log('Search criteria updated:', searchCriteria);
   };
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(searchCriteria);
+    console.log('Search submitted with criteria:', searchCriteria);
   };
 
   return (
