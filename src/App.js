@@ -7,7 +7,6 @@ const App = () => {
   const propertiesData = require('./properties.json');
 
   const handleSearch = (criteria) => {
-    // Implement property search logic based on criteria
     const results = propertiesData.properties.filter(property => {
       // Check if the property type matches the selected type or if the type is set to 'any'
       const matchesType = criteria.type === 'any' || property.type === criteria.type;
@@ -28,14 +27,12 @@ const App = () => {
         (!criteria.endDate || property.dateAdded <= criteria.endDate);
   
       // Check if the property postcode starts with the specified postcode area
-      const matchesPostcode =
-        !criteria.postcodeArea || property.postcode.startsWith(criteria.postcodeArea);
+      const matchesPostcode = !criteria.postcodeArea || property.postcode.startsWith(criteria.postcodeArea);
   
       // Return true only if all criteria are met
-      return matchesType && matchesPrice && matchesBedrooms && matchesDateAdded && matchesPostcode;
+      return matchesType || matchesPrice || matchesBedrooms || matchesDateAdded || matchesPostcode;
     });
   
-    // Set the search results in the state
     setSearchResults(results);
   };
   
