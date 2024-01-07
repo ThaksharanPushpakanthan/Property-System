@@ -1,7 +1,7 @@
 // src/App.js
 import React, { useState } from 'react';
 import SearchForm from './SearchForm';
-const propertiesData = require('./properties.json');
+import properties from './properties.json'
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
