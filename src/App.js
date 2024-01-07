@@ -1,17 +1,31 @@
 // src/App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
-  const propertiesData = require('./properties.json');
+  const [propertiesData, setPropertiesData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/properties.json');
+        const data = await response.json();
+        setPropertiesData(data.properties);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSearch = (criteria) => {
-    const results = propertiesData.properties.filter(property => {
+    const results = propertiesData.filter(property => {
       if (criteria.type === 'any' || property.type === criteria.type) {
-        return true; // Include the property if the type matches or 'any' is selected
+        return true;
       }
-      return false; // Exclude the property if the type doesn't match
+      return false;
     });
 
     setSearchResults(results);
