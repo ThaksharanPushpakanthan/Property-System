@@ -22,13 +22,23 @@ const SearchForm = ({ onSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Pass the search criteria to the parent component
     onSearch(searchCriteria);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Add your input fields and submit button here */}
+      <label>
+        Property Type:
+        <select name="type" value={searchCriteria.type} onChange={handleChange}>
+          <option value="any">Any</option>
+          <option value="house">House</option>
+          <option value="flat">Flat</option>
+        </select>
+      </label>
+
+      {/* Add other input fields for price, bedrooms, date, postcode, etc. */}
+
+      <button type="submit">Search</button>
     </form>
   );
 };
