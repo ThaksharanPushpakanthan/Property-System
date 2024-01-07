@@ -2,19 +2,29 @@
 import React, { useState } from 'react';
 import SearchForm from './SearchForm';
 
+// src/App.js
+// ... (previous code)
+
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
-  const propertiesData = require('./properties.json');
-  console.log(propertiesData); // Log the data to the console
+  const propertiesData = require('./data.json');
 
   const handleSearch = (criteria) => {
+    // Implement property search logic based on criteria
     const results = propertiesData.properties.filter(property => {
-    // Implement your search criteria logic here
-    // For simplicity, let's just return all properties for now
-    return property.price >= (criteria.minPrice || 0);
-  });
+      const matchesType = criteria.type === 'any' || property.type === criteria.type;
+      const matchesPrice = (!criteria.minPrice || property.price >= criteria.minPrice) &&
+                            (!criteria.maxPrice || property.price <= criteria.maxPrice);
+      const matchesBedrooms = (!criteria.minBedrooms || property.bedrooms >= criteria.minBedrooms) &&
+                               (!criteria.maxBedrooms || property.bedrooms <= criteria.maxBedrooms);
+      const matchesDateAdded = (!criteria.startDate || property.dateAdded >= criteria.startDate) &&
+                                (!criteria.endDate || property.dateAdded <= criteria.endDate);
+      const matchesPostcode = !criteria.postcodeArea || property.postcode.startsWith(criteria.postcodeArea);
 
-    setSearchResults(propertiesData.properties);
+      return matchesType && matchesPrice && matchesBedrooms && matchesDateAdded && matchesPostcode;
+    });
+
+    setSearchResults(results);
   };
 
   return (
