@@ -2,27 +2,14 @@
 import React, { useState } from 'react';
 
 const SearchForm = ({ onSearch }) => {
-  const [searchCriteria, setSearchCriteria] = useState({
-    type: '',
-    minPrice: '',
-    maxPrice: '',
-    minBedrooms: '',
-    maxBedrooms: '',
-    startDate: '',
-    endDate: '',
-    postcodeArea: '',
-  });
+  const [searchCriteria, setSearchCriteria] = useState({ type: 'any' });
 
   const handleChange = (e) => {
-    setSearchCriteria({
-      ...searchCriteria,
-      [e.target.name]: e.target.value,
-    });
+    setSearchCriteria({ type: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Pass the search criteria to the parent component
     onSearch(searchCriteria);
   };
 
@@ -36,9 +23,6 @@ const SearchForm = ({ onSearch }) => {
           <option value="flat">Flat</option>
         </select>
       </label>
-
-      {/* Add other input fields for price, bedrooms, date, postcode, etc. */}
-
       <button type="submit">Search</button>
     </form>
   );
