@@ -1,10 +1,11 @@
 // src/App.js
 import React, { useState } from 'react';
 import SearchForm from './SearchForm';
-import propertiesData from './properties.json'
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
+  const propertiesData = require('./properties.json');
+  console.log(propertiesData); // Log the data to the console
 
   const handleSearch = (criteria) => {
     const results = propertiesData.properties.filter(property => {
