@@ -7,7 +7,7 @@ import SearchForm from './SearchForm';
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
-  const propertiesData = require('./data.json');
+  const propertiesData = require('./properties.json');
 
   const handleSearch = (criteria) => {
     // Implement property search logic based on criteria
