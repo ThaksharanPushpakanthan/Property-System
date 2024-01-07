@@ -5,8 +5,12 @@ const SearchForm = ({ onSearch }) => {
   const [searchCriteria, setSearchCriteria] = useState({ type: 'any' });
 
   const handleChange = (e) => {
-    setSearchCriteria({ type: e.target.value });
+    setSearchCriteria(prevState => ({
+      ...prevState,
+      type: e.target.value,
+    }));
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
