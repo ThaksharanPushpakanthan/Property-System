@@ -7,11 +7,11 @@ const App = () => {
   const propertiesData = require('./properties.json');
 
   const handleSearch = (criteria) => {
-    setSearchResults(
-      criteria.type === 'any'
-        ? propertiesData.properties
-        : propertiesData.properties.filter(property => property.type === criteria.type)
-    );
+    const results = propertiesData.properties.filter(property => {
+      return criteria.type === 'any' || property.type === criteria.type;
+    });
+
+    setSearchResults(results);
   };
 
   return (
