@@ -2,25 +2,14 @@
 import React, { useState } from 'react';
 import SearchForm from './SearchForm';
 
-// src/App.js
-// ... (previous code)
-
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
   const propertiesData = require('./properties.json');
 
   const handleSearch = (criteria) => {
+    // Implement property search logic based on type
     const results = propertiesData.properties.filter(property => {
-      const matchesType = criteria.type === 'any' || property.type === criteria.type;
-      const matchesPrice = (!criteria.minPrice || property.price >= criteria.minPrice) &&
-                            (!criteria.maxPrice || property.price <= criteria.maxPrice);
-      const matchesBedrooms = (!criteria.minBedrooms || property.bedrooms >= criteria.minBedrooms) &&
-                               (!criteria.maxBedrooms || property.bedrooms <= criteria.maxBedrooms);
-      const matchesDateAdded = (!criteria.startDate || property.dateAdded >= criteria.startDate) &&
-                                (!criteria.endDate || property.dateAdded <= criteria.endDate);
-      const matchesPostcode = !criteria.postcodeArea || property.postcode.startsWith(criteria.postcodeArea);
-
-      return matchesType && matchesPrice && matchesBedrooms && matchesDateAdded && matchesPostcode;
+      return criteria.type === 'any' || property.type === criteria.type;
     });
 
     setSearchResults(results);
@@ -31,6 +20,7 @@ const App = () => {
       <h1>Property Search</h1>
       <SearchForm onSearch={handleSearch} />
       <div>
+        {/* Display search results here */}
         {searchResults.length === 0 ? (
           <p>No results found.</p>
         ) : (
