@@ -7,9 +7,12 @@ const App = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = (criteria) => {
-    // Implement property search logic based on criteria
-    // Set the search results in the state
-    // For simplicity, let's assume searching logic here
+    const results = propertiesData.properties.filter(property => {
+    // Implement your search criteria logic here
+    // For simplicity, let's just return all properties for now
+    return property.price >= (criteria.minPrice || 0);
+  });
+
     setSearchResults(propertiesData.properties);
   };
 
