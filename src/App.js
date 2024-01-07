@@ -22,15 +22,21 @@ const App = () => {
       <h1>Property Search</h1>
       <SearchForm onSearch={handleSearch} />
       <div>
-        {searchResults.map(property => (
-          <div key={property.id}>
-            <p>Type: {property.type}</p>
-            <p>Price: {property.price}</p>
-            <p>Bedrooms: {property.bedrooms}</p>
-            <p>Date Added: {property.dateAdded}</p>
-            <p>Postcode: {property.postcode}</p>
-          </div>
-        ))}
+        {/* Display search results here */}
+        {searchResults.length === 0 ? (
+          <p>No results found.</p>
+        ) : (
+          searchResults.map(property => (
+            <div key={property.id}>
+              <p>Type: {property.type}</p>
+              <p>Price: {property.price}</p>
+              <p>Bedrooms: {property.bedrooms}</p>
+              <p>Date Added: {property.dateAdded}</p>
+              <p>Postcode: {property.postcode}</p>
+              <hr />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
