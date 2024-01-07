@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const SearchForm = ({ onSearch }) => {
   const [searchCriteria, setSearchCriteria] = useState({
-    type: 'any',
+    type: '',
     minPrice: '',
     maxPrice: '',
     minBedrooms: '',
