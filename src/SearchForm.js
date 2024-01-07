@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 const SearchForm = ({ onSearch }) => {
-  const [searchCriteria, setSearchCriteria] = useState({ type: 'House' });
+  const [searchCriteria, setSearchCriteria] = useState({ type: 'any' });
 
   const handleChange = (e) => {
     setSearchCriteria({ type: e.target.value });
