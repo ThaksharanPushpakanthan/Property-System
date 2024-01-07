@@ -7,18 +7,15 @@ const App = () => {
   const propertiesData = require('./properties.json');
 
   const handleSearch = (criteria) => {
-    // Implement property search logic based on type
-    const results = propertiesData.properties.filter(property => {
-      return criteria.type === 'any' || property.type === criteria.type;
-    });
-
-    setSearchResults(results);
+    // For simplicity, let's just return all properties for now
+    setSearchResults(propertiesData.properties);
   };
 
   return (
     <div>
       <h1>Property Search</h1>
       <SearchForm onSearch={handleSearch} />
+
       <div>
         {/* Display search results here */}
         {searchResults.length === 0 ? (
